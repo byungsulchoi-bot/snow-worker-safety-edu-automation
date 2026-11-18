@@ -1,0 +1,15 @@
+# 개인정보·계정 식별정보 (로컬에만 보관)
+config/settings.json
+logs/sent_log.json
+logs/drive_*.json
+
+# 생성물 (python generator/generate.py build 로 재생성)
+output/
+portal/
+
+# Python
+__pycache__/
+*.pyc
+
+# Office 임시파일
+~$*

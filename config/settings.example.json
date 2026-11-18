@@ -1,0 +1,76 @@
+{
+  "_comment": "예시 설정. config/settings.json 으로 복사한 뒤 mail_to·portal_url·drive_root_folder_id·placeholders 를 채운다. settings.json 은 개인정보가 있어 Git에 올리지 않는다.",
+  "half": "H2",
+  "apply_no_accident_reduction": false,
+  "online_subjects": [],
+  "days": 2,
+  "day_start": "09:00",
+  "lunch": {
+    "start": "12:00",
+    "end": "13:00"
+  },
+  "schedule": [
+    {
+      "day": 1,
+      "subject": 1,
+      "hours": 3
+    },
+    {
+      "day": 1,
+      "subject": 6,
+      "hours": 1
+    },
+    {
+      "day": 1,
+      "subject": 3,
+      "hours": 2
+    },
+    {
+      "day": 2,
+      "subject": 2,
+      "hours": 2
+    },
+    {
+      "day": 2,
+      "subject": 5,
+      "hours": 1
+    },
+    {
+      "day": 2,
+      "subject": 4,
+      "hours": 1
+    },
+    {
+      "day": 2,
+      "subject": 7,
+      "hours": 1
+    },
+    {
+      "day": 2,
+      "subject": 8,
+      "hours": 1
+    }
+  ],
+  "instructor_role": "관리감독자(현장 책임자)",
+  "placeholders": {
+    "org": "",
+    "dept": "",
+    "receiver": "",
+    "via": "",
+    "doc_no": "",
+    "place": "",
+    "instructor_name": "",
+    "approval_line": [
+      "담당",
+      "",
+      "",
+      ""
+    ],
+    "budget": ""
+  },
+  "mail_to": "",
+  "portal_url": "",
+  "drive_root_folder_id": "",
+  "attendance_rows": 40,
+  "photo_slots": 4
+}
