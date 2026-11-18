@@ -3,7 +3,13 @@
 매년 10월 1·15·25일 09:00(Claude 데스크톱 앱 예약 작업 `snow-worker-safety-edu-package`)에
 법령 개정 확인 → 교육 패키지 20종 생성·검증 → 본인 Gmail 발송(연 1회)을 수행합니다.
 
-## 웹 자료실
+## 공개 웹 자료실 (Vercel)
+- `site/` 폴더가 정적 웹사이트입니다(`vercel.json`의 `outputDirectory`). 빌드 과정 없이 그대로 배포됩니다.
+- 갱신: `python generator/build_portal.py --year {연도} --law-check logs/law_check_{연도}.json --target site` → `site/` 커밋·푸시 → Vercel이 자동 재배포
+- 로컬 미리보기: `python -m http.server 8765 --directory site`
+- 사이트 주소를 아는 사람은 누구나 내려받을 수 있습니다(문서에는 개인정보 없이 〔　〕 공란만 있음).
+
+## 비공개 웹 자료실 (claude.ai Artifact)
 - 주소: https://claude.ai/artifact/3kUse4Bwks34GdSJruRhEa (비공개, 다른 사람에게는 페이지의 공유 메뉴로 공유)
 - 매년 10월 1일 실행 때 산출물을 Google Drive `제설근로자 안전교육 자료실/{연도}` 폴더에 올리고, 자료실을 같은 주소로 갱신합니다(지난 연도 자료도 연도 선택으로 계속 열람).
 - 수동 갱신: Drive 업로드 후 `logs/drive_{연도}.json` 작성 → `python generator/build_portal.py --year {연도} --law-check logs/law_check_{연도}.json` → `portal/index.html`을 같은 주소로 재게시

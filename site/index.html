@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}[hidden]{display:none!important}</style>
+<title>제설근로자 안전교육 자료실</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500;700;800&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: 단일 열 자료실. 상단 연도 헤더(게시 기준·법령 상태) → 전체 ZIP → 요청 항목 1~8별 파일 목록 → 법정 기준 요약 */
+:root {
+  --bg: #F3F5F7;
+  --surface: #FFFFFF;
+  --ink: #18222E;
+  --muted: #5B6878;
+  --line: #D9DFE6;
+  --accent: #1E4F8A;
+  --accent-ink: #FFFFFF;
+  --hazard: #F2A900;
+  --ok: #1F7A4A;
+  --warn: #B4471C;
+  --chip: #E7EEF6;
+  --f-display: "Gothic A1", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --f-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F151C; --surface: #18212B; --ink: #E6ECF2; --muted: #9AA8B8; --line: #2A3644;
+    --accent: #6FA6E8; --accent-ink: #0F151C; --hazard: #F2B630; --ok: #5CC48C; --warn: #F08A5D; --chip: #22303F;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F151C; --surface: #18212B; --ink: #E6ECF2; --muted: #9AA8B8; --line: #2A3644;
+  --accent: #6FA6E8; --accent-ink: #0F151C; --hazard: #F2B630; --ok: #5CC48C; --warn: #F08A5D; --chip: #22303F;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+.wrap { max-width: 920px; margin: 0 auto; display: grid; gap: 28px; }
+.tape { height: 8px; margin: 0 calc(-1 * max(16px, env(safe-area-inset-left, 0px))) 0;
+  background: repeating-linear-gradient(-45deg, var(--hazard) 0 14px, var(--ink) 14px 28px); }
+header.top { display: grid; gap: 14px; padding-top: 28px; }
+.eyebrow { font-size: 12px; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
+h1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(26px, 5vw, 36px); line-height: 1.2; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--f-display); font-weight: 700; font-size: 20px; margin: 0; text-wrap: balance; }
+h3 { font-family: var(--f-display); font-weight: 700; font-size: 16px; margin: 0; }
+p { margin: 0; }
+.lede { color: var(--muted); max-width: 62ch; }
+.yearbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.yearbar label { font-size: 13px; color: var(--muted); }
+select { font: inherit; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.status { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--line);
+  border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.status > div { background: var(--surface); padding: 14px 16px; display: grid; gap: 4px; min-width: 0; }
+.status .k { font-size: 12px; color: var(--muted); }
+.status .v { font-weight: 600; font-variant-numeric: tabular-nums; }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; }
+.pill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.pill.ok { color: var(--ok); } .pill.warn { color: var(--warn); }
+.law-notes { margin: 0; padding-left: 18px; color: var(--muted); font-size: 13px; display: grid; gap: 2px; }
+.zip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px;
+  background: var(--accent); color: var(--accent-ink); border-radius: 12px; padding: 18px 20px; }
+.zip p { opacity: .85; font-size: 13px; }
+.acts { display: inline-flex; gap: 8px; flex-wrap: wrap; flex-shrink: 0; }
+a.dl { font-weight: 600; font-size: 14px; text-decoration: none; border-radius: 8px; padding: 7px 14px; white-space: nowrap;
+  border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); }
+a.dl.ghost { background: transparent; color: var(--accent); }
+a.dl:hover { filter: brightness(1.08); }
+a.dl.ghost:hover { background: var(--chip); }
+a.dl:focus-visible, select:focus-visible { outline: 3px solid var(--hazard); outline-offset: 2px; }
+.zip a.dl { background: var(--accent-ink); color: var(--accent); border-color: var(--accent-ink); padding: 10px 18px; }
+.zip a.dl.ghost { background: transparent; color: var(--accent-ink); }
+.notice { font-size: 13px; color: var(--muted); margin-top: -16px; }
+.groups { display: grid; gap: 12px; }
+.group { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; display: grid; gap: 10px; }
+.group-head { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.num { font-family: var(--f-mono); font-size: 13px; color: var(--accent); }
+.basis { font-size: 12px; color: var(--muted); }
+.files { display: grid; gap: 0; }
+.file { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid var(--line); }
+.file:first-child { border-top: 0; }
+.file .name { min-width: 0; overflow-wrap: anywhere; }
+.file .meta { font-family: var(--f-mono); font-size: 11px; color: var(--muted); margin-left: 8px; }
+.ext { display: inline-block; font-family: var(--f-mono); font-size: 11px; padding: 1px 6px; border-radius: 4px; background: var(--chip); color: var(--ink); margin-right: 8px; }
+.ref { display: grid; gap: 14px; }
+.tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { text-align: left; padding: 9px 12px; border-top: 1px solid var(--line); vertical-align: top; }
+th { background: var(--chip); font-weight: 600; border-top: 0; white-space: nowrap; }
+td.n { font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.law { color: var(--muted); font-size: 12px; min-width: 180px; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 8px; font-size: 14px; max-width: calc(100% - 32px); }
+footer { font-size: 12px; color: var(--muted); }
+@media (max-width: 520px) { .file { align-items: flex-start; } .file .meta { display: block; margin-left: 0; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+</head>
+<body>
+<div class="tape" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="top">
+    <span class="eyebrow">산업안전보건법 법정교육 · 제설기간제근로자</span>
+    <h1 id="h1">제설근로자 안전교육 자료실</h1>
+    <p class="lede">매년 10월 1일 현행 법령을 확인해 갱신하는 하반기 정기 안전보건교육 서류 일체입니다. 공문의 〔　〕 칸은 내려받은 뒤 직접 채워 쓰세요.</p>
+    <div class="yearbar">
+      <label for="year">게시 연도</label>
+      <select id="year"></select>
+      <span id="posted" class="basis"></span>
+    </div>
+  </header>
+
+  <section class="status" id="status" aria-label="게시 기준"></section>
+  <ul class="law-notes" id="lawnotes"></ul>
+
+  <section class="zip">
+    <div>
+      <h2 id="zipTitle">전체 패키지</h2>
+      <p id="zipMeta"></p>
+    </div>
+    <span class="acts">
+      <a class="dl ghost" id="folderBtn" href="#" target="_blank" rel="noopener">Drive 폴더</a>
+      <a class="dl" id="zipBtn" href="#" target="_blank" rel="noopener">ZIP 내려받기</a>
+    </span>
+  </section>
+  <p class="notice" id="driveNotice">파일은 Google Drive에 보관되어 있습니다. 링크가 열리지 않으면 자료를 올린 Google 계정으로 로그인했는지 확인하세요.</p>
+
+  <section class="groups" id="groups" aria-label="항목별 서류"></section>
+
+  <section class="ref">
+    <h2>법정 기준 요약</h2>
+    <div class="tablewrap"><table id="refTable"></table></div>
+    <div class="tablewrap"><table id="exTable"></table></div>
+  </section>
+
+  <footer id="foot"></footer>
+</div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+const DATA = {"years": [{"year": 2026, "basis_date": "2026-11-18", "posted_label": "2026-11-18 기준 게시", "generated_at": "2026-11-18 14:29", "half": "2026년 하반기", "required_hours": "12", "total_hours": 12, "instructor": "관리감독자", "law_stamp": "적용 법령 기준: 산업안전보건법 [2026.10.27. 법률 제22122호], 산업안전보건법 시행규칙 [2026.8.1. 고용노동부령 제477호] 별표4·5(2025.5.30. 개정), 안전보건교육규정(고용노동부 고시) [2025.11.27. 고용노동부고시 제2025-77호] / 법령 확인일 2026-11-18", "law": {"changed": false, "failed": false, "status_text": "법령 개정 확인 완료: 기준 대비 변경 없음 (2026-11-18 국가법령정보센터 원문 대조)", "details": ["산업안전보건법 [시행 2026. 10. 27.] 법률 제22122호: 제29조·제30조·제175조제5항 내용 기준과 동일", "산업안전보건법 시행규칙 [시행 2026. 8. 1.] 고용노동부령 제477호: 제26조·제27조 현행 원문 반영", "시행규칙 별표4·별표5 <개정 2025. 5. 30.>: 정기교육 1·2번 과목명 변경분(화재·폭발 대피, 폭염·한파 응급조치) 반영", "안전보건교육규정 [시행 2025. 11. 27.] 고용노동부고시 제2025-77호: 제3조의2·제4조·제5조·제9조 반영"]}, "subjects": [{"no": 1, "name": "산업안전 및 산업재해 예방에 관한 사항(화재·폭발 사고 발생 시 대피에 관한 사항을 포함한다)", "hours": 3}, {"no": 2, "name": "산업보건 및 건강장해 예방에 관한 사항(폭염·한파작업으로 인한 건강장해 발생 시 응급조치에 관한 사항을 포함한다)", "hours": 2}, {"no": 3, "name": "위험성 평가에 관한 사항", "hours": 2}, {"no": 4, "name": "건강증진 및 질병 예방에 관한 사항", "hours": 1}, {"no": 5, "name": "유해·위험 작업환경 관리에 관한 사항", "hours": 1}, {"no": 6, "name": "산업안전보건법령 및 산업재해보상보험 제도에 관한 사항", "hours": 1}, {"no": 7, "name": "직무스트레스 예방 및 관리에 관한 사항", "hours": 1}, {"no": 8, "name": "직장 내 괴롭힘, 고객의 폭언 등으로 인한 건강장해 예방 및 관리에 관한 사항", "hours": 1}], "exemptions": [{"id": "E1", "condition": "별표5 특별교육 대상작업에 대해 특별교육을 실시한 근로자", "effect": "채용 시 교육을 실시한 것으로 간주(별도 실시 불요)", "basis": "시행규칙 제26조제1항 후단"}, {"id": "E2", "condition": "한국표준산업분류 세분류상 같은 종류의 업종에 6개월 이상 근무한 경험이 있는 근로자를 이직 후 1년 이내에 채용", "effect": "채용 시 교육시간의 100분의 50 이상만 실시(8시간 → 4시간 이상)", "basis": "법 제30조제2항, 시행규칙 제27조제5항제1호"}, {"id": "E3", "condition": "채용 시 교육을 이수한 근로자가 같은 도급인의 사업장 내에서 이전과 동일한 업무에 종사", "effect": "소속 사업장 변경에도 불구하고 채용 시 교육 면제", "basis": "법 제30조제2항, 시행규칙 제27조제5항제3호"}, {"id": "E4", "condition": "「항만안전특별법 시행령」 제5조제1항제1호에 따른 신규안전교육 이수", "effect": "이수 시간만큼 채용 시 교육시간 면제", "basis": "법 제30조제1항제2호, 시행규칙 제27조제3항제2호"}, {"id": "E5", "condition": "그 밖에 고용노동부장관이 채용 시 교육 면제 대상으로 인정하는 교육 이수", "effect": "면제", "basis": "시행규칙 제27조제5항제4호"}], "files": [{"filename": "00_README_패키지안내.docx", "bytes": 37280, "download": "files/2026/01.docx"}, {"filename": "01_채용시교육_면제감면_기준.docx", "bytes": 38099, "download": "files/2026/02.docx"}, {"filename": "01_채용시교육_면제판정표.xlsx", "bytes": 16608, "download": "files/2026/03.xlsx"}, {"filename": "02_하반기_정기교육_법정기준.docx", "bytes": 38213, "download": "files/2026/04.docx"}, {"filename": "03_교안_과목1_산업안전및산업재해예방.pptx", "bytes": 43598, "download": "files/2026/05.pptx"}, {"filename": "03_교안_과목2_산업보건및건강장해예방.pptx", "bytes": 43789, "download": "files/2026/06.pptx"}, {"filename": "03_교안_과목3_위험성평가.pptx", "bytes": 43123, "download": "files/2026/07.pptx"}, {"filename": "03_교안_과목4_건강증진및질병예방.pptx", "bytes": 41260, "download": "files/2026/08.pptx"}, {"filename": "03_교안_과목5_유해위험작업환경관리.pptx", "bytes": 43046, "download": "files/2026/09.pptx"}, {"filename": "03_교안_과목6_산업안전보건법령및산재보험.pptx", "bytes": 41304, "download": "files/2026/10.pptx"}, {"filename": "03_교안_과목7_직무스트레스예방및관리.pptx", "bytes": 41139, "download": "files/2026/11.pptx"}, {"filename": "03_교안_과목8_직장내괴롭힘고객폭언등예방.pptx", "bytes": 41328, "download": "files/2026/12.pptx"}, {"filename": "04_강사자격_및_교육시간표.xlsx", "bytes": 10587, "download": "files/2026/13.xlsx"}, {"filename": "05_교육계획보고_공문.docx", "bytes": 37551, "download": "files/2026/14.docx"}, {"filename": "06_교육사진대지.docx", "bytes": 36459, "download": "files/2026/15.docx"}, {"filename": "06_교육일지.docx", "bytes": 38125, "download": "files/2026/16.docx"}, {"filename": "06_출석부.xlsx", "bytes": 10573, "download": "files/2026/17.xlsx"}, {"filename": "07_교육결과_집계표.xlsx", "bytes": 7974, "download": "files/2026/18.xlsx"}, {"filename": "07_교육결과보고_공문.docx", "bytes": 37379, "download": "files/2026/19.docx"}, {"filename": "08_법령준수_체크리스트.xlsx", "bytes": 10684, "download": "files/2026/20.xlsx"}], "zip": {"filename": "2026_제설근로자_안전보건교육_패키지.zip", "bytes": 569538, "download": "files/2026/package.zip"}, "folder": ""}], "groups": [{"no": "안내", "title": "패키지 안내 (적용 법령·할 일)", "prefixes": ["00_"], "basis": ""}, {"no": "1", "title": "채용 시 교육 면제 조건", "prefixes": ["01_"], "basis": "법 제30조제2항, 시행규칙 제26조제1항 후단·제27조제5항"}, {"no": "2", "title": "하반기 정기교육 법정시간·교과목", "prefixes": ["02_"], "basis": "법 제29조제1항, 시행규칙 제26조제1항, 별표4·별표5"}, {"no": "3", "title": "법정 교과목별 교안 PPT", "prefixes": ["03_"], "basis": "시행규칙 별표5, 제36조제1항"}, {"no": "4", "title": "강사자격 및 교육시간표", "prefixes": ["04_"], "basis": "시행규칙 제26조제3항"}, {"no": "5", "title": "교육계획보고 공문", "prefixes": ["05_"], "basis": ""}, {"no": "6", "title": "교육일지 · 출석부 · 교육사진 양식", "prefixes": ["06_"], "basis": "안전보건교육규정 제4조제2호"}, {"no": "7", "title": "교육결과보고 공문 및 첨부", "prefixes": ["07_"], "basis": ""}, {"no": "8", "title": "법령준수 체크리스트 (근거조항 표기)", "prefixes": ["08_"], "basis": ""}], "mode": "site"};
+const $ = (id) => document.getElementById(id);
+let current = DATA.years[0].year;
+
+function el(tag, attrs, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (k === "class") e.className = v; else if (k === "text") e.textContent = v; else e.setAttribute(k, v);
+  }
+  for (const k of kids) if (k != null) e.append(k);
+  return e;
+}
+function kb(n) { return n >= 1048576 ? (n / 1048576).toFixed(1) + " MB" : Math.max(1, Math.round(n / 1024)) + " KB"; }
+function toast(msg) {
+  const t = $("toast"); t.textContent = msg; t.hidden = false;
+  clearTimeout(toast._t); toast._t = setTimeout(() => { t.hidden = true; }, 3200);
+}
+
+function links(file) {
+  if (!file.view) {
+    return el("span", { class: "acts" },
+      el("a", { class: "dl", href: file.download, download: file.filename, text: "내려받기", "aria-label": file.filename + " 내려받기" }));
+  }
+  return el("span", { class: "acts" },
+    el("a", { class: "dl ghost", href: file.view, target: "_blank", rel: "noopener", text: "미리보기", "aria-label": file.filename + " 미리보기" }),
+    el("a", { class: "dl", href: file.download, target: "_blank", rel: "noopener", text: "내려받기", "aria-label": file.filename + " 내려받기" }));
+}
+
+function render() {
+  const Y = DATA.years.find((y) => y.year === current);
+  $("posted").textContent = Y.posted_label;
+  const st = $("status"); st.replaceChildren();
+  const lawOk = !Y.law.changed && !Y.law.failed;
+  const cells = [
+    ["게시 기준일", Y.basis_date],
+    ["법령 확인", el("span", { class: "pill " + (lawOk ? "ok" : "warn"), text: Y.law.failed ? "확인 실패 · 직전 기준" : Y.law.changed ? "개정 반영" : "변경 없음" })],
+    ["정기교육 요구시간", "1인당 " + Y.required_hours + "시간 (" + Y.half + ")"],
+    ["편성", Y.total_hours + "시간 · 8과목 · " + Y.instructor],
+  ];
+  for (const [k, v] of cells) st.append(el("div", {}, el("span", { class: "k", text: k }), el("span", { class: "v" }, v)));
+  const ln = $("lawnotes"); ln.replaceChildren();
+  ln.append(el("li", { text: Y.law_stamp }));
+  for (const d of Y.law.details || []) ln.append(el("li", { text: d }));
+
+  $("zipTitle").textContent = Y.year + "년 전체 패키지";
+  $("zipMeta").textContent = Y.files.length + "개 파일 · " + kb(Y.zip.bytes) + " · 공문·양식·교안·체크리스트 포함";
+  const zb = $("zipBtn");
+  zb.href = Y.zip.download;
+  if (DATA.mode === "site") { zb.setAttribute("download", Y.zip.filename); zb.removeAttribute("target"); }
+  $("folderBtn").hidden = !Y.folder;
+  if (Y.folder) $("folderBtn").href = Y.folder;
+  $("driveNotice").hidden = DATA.mode === "site";
+
+  const g = $("groups"); g.replaceChildren();
+  for (const grp of DATA.groups) {
+    const fs = Y.files.filter((f) => grp.prefixes.some((p) => f.filename.startsWith(p)));
+    if (!fs.length) continue;
+    const list = el("div", { class: "files" });
+    for (const f of fs) {
+      const ext = f.filename.split(".").pop().toUpperCase();
+      const nm = f.filename.replace(/^\d\d_/, "").replace(/\.[^.]+$/, "").replace(/_/g, " ");
+      list.append(el("div", { class: "file" },
+        el("span", { class: "name" }, el("span", { class: "ext", text: ext }), nm, el("span", { class: "meta", text: kb(f.bytes) })),
+        links(f)));
+    }
+    g.append(el("article", { class: "group" },
+      el("div", { class: "group-head" }, el("span", { class: "num", text: grp.no }), el("h3", { text: grp.title })),
+      grp.basis ? el("p", { class: "basis", text: "근거 " + grp.basis }) : null,
+      list));
+  }
+
+  const rt = $("refTable"); rt.replaceChildren();
+  rt.append(el("tr", {}, el("th", { text: "번호" }), el("th", { text: "정기교육 법정 교과목 (별표5)" }), el("th", { text: "편성" })));
+  for (const s of Y.subjects) rt.append(el("tr", {}, el("td", { class: "n", text: s.no }), el("td", { text: s.name }), el("td", { class: "n", text: s.hours + "h" })));
+  const et = $("exTable"); et.replaceChildren();
+  et.append(el("tr", {}, el("th", { text: "구분" }), el("th", { text: "채용 시 교육(8시간) 면제·감면 조건" }), el("th", { text: "효과" }), el("th", { text: "근거" })));
+  for (const e of Y.exemptions) et.append(el("tr", {}, el("td", { class: "n", text: e.id }), el("td", { text: e.condition }), el("td", { text: e.effect }), el("td", { class: "law", text: e.basis })));
+  $("foot").textContent = "자동 생성: " + Y.generated_at + " · 판정과 서식은 검토용이며 최종 판단은 담당자가 입증서류로 확인합니다.";
+}
+
+function init() {
+  const sel = $("year");
+  for (const y of DATA.years) sel.append(el("option", { value: y.year, text: y.year + "년" + (y === DATA.years[0] ? " (최신)" : "") }));
+  sel.value = current;
+  sel.addEventListener("change", () => { current = Number(sel.value); render(); });
+  render();
+}
+init();
+</script>
+
+</body>
+</html>

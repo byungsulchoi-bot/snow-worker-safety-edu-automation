@@ -125,7 +125,7 @@ footer { font-size: 12px; color: var(--muted); }
       <a class="dl" id="zipBtn" href="#" target="_blank" rel="noopener">ZIP 내려받기</a>
     </span>
   </section>
-  <p class="notice">파일은 Google Drive에 보관되어 있습니다. 링크가 열리지 않으면 자료를 올린 Google 계정으로 로그인했는지 확인하세요.</p>
+  <p class="notice" id="driveNotice">파일은 Google Drive에 보관되어 있습니다. 링크가 열리지 않으면 자료를 올린 Google 계정으로 로그인했는지 확인하세요.</p>
 
   <section class="groups" id="groups" aria-label="항목별 서류"></section>
 
@@ -159,6 +159,10 @@ function toast(msg) {
 }
 
 function links(file) {
+  if (!file.view) {
+    return el("span", { class: "acts" },
+      el("a", { class: "dl", href: file.download, download: file.filename, text: "내려받기", "aria-label": file.filename + " 내려받기" }));
+  }
   return el("span", { class: "acts" },
     el("a", { class: "dl ghost", href: file.view, target: "_blank", rel: "noopener", text: "미리보기", "aria-label": file.filename + " 미리보기" }),
     el("a", { class: "dl", href: file.download, target: "_blank", rel: "noopener", text: "내려받기", "aria-label": file.filename + " 내려받기" }));
@@ -182,8 +186,12 @@ function render() {
 
   $("zipTitle").textContent = Y.year + "년 전체 패키지";
   $("zipMeta").textContent = Y.files.length + "개 파일 · " + kb(Y.zip.bytes) + " · 공문·양식·교안·체크리스트 포함";
-  $("zipBtn").href = Y.zip.download;
-  $("folderBtn").href = Y.folder;
+  const zb = $("zipBtn");
+  zb.href = Y.zip.download;
+  if (DATA.mode === "site") { zb.setAttribute("download", Y.zip.filename); zb.removeAttribute("target"); }
+  $("folderBtn").hidden = !Y.folder;
+  if (Y.folder) $("folderBtn").href = Y.folder;
+  $("driveNotice").hidden = DATA.mode === "site";
 
   const g = $("groups"); g.replaceChildren();
   for (const grp of DATA.groups) {
